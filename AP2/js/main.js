@@ -1,8 +1,9 @@
 console.log("hola");
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
+ctx.fillStyle ="limegreen"; //ejercicio 1
 
-const CELL_SIZE = 8;
+const CELL_SIZE = 12; // modificacion EJ1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
 const ROWS = Math.floor(canvas.height / CELL_SIZE);
 
