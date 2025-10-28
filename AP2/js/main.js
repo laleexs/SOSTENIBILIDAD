@@ -1,7 +1,7 @@
 console.log("hola");
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
-ctx.fillStyle ="limegreen"; //ejercicio 1
+ctx.fillStyle = "limegreen"; //ejercicio 1
 
 const CELL_SIZE = 12; // modificacion EJ1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
@@ -86,18 +86,25 @@ function step() {
   draw();
 }
 
-
 step(); // prueba una generación
 
- let running = true;
- function loop() {
- if (running) {
- step();
- }
- requestAnimationFrame(loop);
- }
- loop();
- // (Espacio) para pausar/reanudar
- document.addEventListener('keydown', (e) => {
- if (e.key === ' ') { running = !running; e.preventDefault(); }
- });
+let running = true;
+function loop() {
+  if (running) {
+    step();
+  }
+  requestAnimationFrame(loop);
+}
+loop();
+// (Espacio) para pausar/reanudar
+document.addEventListener("keydown", (e) => {
+  if (e.key === " ") {
+    running = !running;
+    e.preventDefault();
+    if (running === true) { //ejercicio 2
+      console.log("Simulación en ejecución");
+    } else {
+      console.log("Simulación en pausada");
+    }
+  }
+});
