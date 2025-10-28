@@ -8,6 +8,9 @@ const CELL_SIZE = 12; // modificacion EJ1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
 const ROWS = Math.floor(canvas.height / CELL_SIZE);
 
+let generations = 0; // ejercicio 4
+
+
 // Crea una cuadrícula vacía (0 = muerta, 1 = viva)
 function createGrid(rows, cols, fill = false) {
   const g = new Array(rows);
@@ -85,6 +88,8 @@ function step() {
   }
   grid = next;
   draw();
+  generations++;  //ejercicio 4 
+  document.getElementById("info").textContent = "Contador de frames : " + generations;
 }
 
 step(); // prueba una generación
