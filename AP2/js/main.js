@@ -2,6 +2,7 @@ console.log("hola");
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
 ctx.fillStyle = "limegreen"; //ejercicio 1
+const btnReset = document.getElementById("resetBtn"); //ejercicio3
 
 const CELL_SIZE = 12; // modificacion EJ1
 const COLS = Math.floor(canvas.width / CELL_SIZE);
@@ -101,10 +102,23 @@ document.addEventListener("keydown", (e) => {
   if (e.key === " ") {
     running = !running;
     e.preventDefault();
-    if (running === true) { //ejercicio 2
+    if (running === true) {
+      //ejercicio 2
       console.log("Simulación en ejecución");
     } else {
       console.log("Simulación en pausada");
     }
   }
 });
+
+ function clearAll() { //ejercicio3
+ grid = createGrid(ROWS, COLS, false);
+ draw();
+ }
+
+ btnReset.addEventListener("click", (e) => { //ejercicio 3
+  e.preventDefault();
+  clearAll();  // limpiamos la cuadricula
+  randomize(0.2); //rellenamos la cuadricula
+  
+ })
