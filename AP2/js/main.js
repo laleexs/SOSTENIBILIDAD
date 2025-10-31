@@ -1,6 +1,6 @@
-console.log("hola");
 const canvas = document.getElementById("life");
 const ctx = canvas.getContext("2d");
+
 ctx.fillStyle = "limegreen"; //ejercicio 1
 const btnReset = document.getElementById("resetBtn"); //ejercicio3
 
@@ -23,14 +23,14 @@ let grid = createGrid(ROWS, COLS, false);
 
 //estado inicial para ver algo en pantalla
 
-function randomize(p = 0.2) {
+function randomize(p = 0.1) {
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       grid[r][c] = Math.random() < p ? 1 : 0; // math random numero aleatorio entre 0 y 1
     }
   }
 }
-randomize(0.2); // 20% vivas
+randomize(0.1); // 20% vivas
 
 console.log(grid);
 
@@ -81,18 +81,18 @@ function step() {
   for (let r = 0; r < ROWS; r++) {
     for (let c = 0; c < COLS; c++) {
       const alive = grid[r][c] === 1;
-      const n = neighbors(r, c);
+      const n = neighbors(r, c); 
       next[r][c] =
         (alive && (n === 2 || n === 3)) || (!alive && n === 3) ? 1 : 0;
     }
   }
   grid = next;
   draw();
-  generations++;  //ejercicio 4 
+  generations++;  //           ejercicio 4 
   document.getElementById("info").textContent = "Contador de frames : " + generations;
 }
 
-step(); // prueba una generación
+//step(); // prueba una generación
 
 let running = true;
 function loop() {
@@ -108,7 +108,7 @@ document.addEventListener("keydown", (e) => {
     running = !running;
     e.preventDefault();
     if (running === true) {
-      //ejercicio 2
+      //                                        ejercicio 2
       console.log("Simulación en ejecución");
     } else {
       console.log("Simulación en pausada");
@@ -116,12 +116,12 @@ document.addEventListener("keydown", (e) => {
   }
 });
 
- function clearAll() { //ejercicio3
+ function clearAll() { //                   ejercicio3
  grid = createGrid(ROWS, COLS, false);
  draw();
  }
 
- btnReset.addEventListener("click", (e) => { //ejercicio 3
+ btnReset.addEventListener("click", (e) => { // ejercicio 3
   e.preventDefault();
   clearAll();  // limpiamos la cuadricula
   randomize(0.2); //rellenamos la cuadricula
